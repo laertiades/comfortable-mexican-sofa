@@ -20,7 +20,7 @@ class Cms::File < ActiveRecord::Base
   before_post_process :is_image?
   
   # -- Relationships --------------------------------------------------------
-  belongs_to :site
+  belongs_to :site, :touch => true
   belongs_to :block
   
   # -- Validations ----------------------------------------------------------

@@ -6,7 +6,7 @@ class Cms::Layout < ActiveRecord::Base
   cms_has_revisions_for :content, :css, :js
   
   # -- Relationships --------------------------------------------------------
-  belongs_to :site
+  belongs_to :site, :touch => true
   has_many :pages, :dependent => :nullify
   
   # -- Callbacks ------------------------------------------------------------

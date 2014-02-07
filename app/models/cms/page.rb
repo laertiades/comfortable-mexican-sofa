@@ -13,7 +13,7 @@ class Cms::Page < ActiveRecord::Base
                 :blocks_attributes_changed
   
   # -- Relationships --------------------------------------------------------
-  belongs_to :site
+  belongs_to :site, :touch => true
   belongs_to :layout
   belongs_to :target_page,
     :class_name => 'Cms::Page'

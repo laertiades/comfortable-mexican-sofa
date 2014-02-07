@@ -2,7 +2,7 @@ class Cms::Category < ActiveRecord::Base
   include Cms::Base
   
   # -- Relationships --------------------------------------------------------
-  belongs_to :site
+  belongs_to :site, :touch => true
   has_many :categorizations,
     :dependent => :destroy
     

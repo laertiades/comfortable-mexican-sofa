@@ -6,7 +6,7 @@ class Cms::Snippet < ActiveRecord::Base
   cms_has_revisions_for :content
   
   # -- Relationships --------------------------------------------------------
-  belongs_to :site
+  belongs_to :site, :touch => true
   
   # -- Callbacks ------------------------------------------------------------
   before_validation :assign_label
