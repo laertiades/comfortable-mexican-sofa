@@ -75,6 +75,11 @@ class ComfortableMexicanSofa::Configuration
   # Default is false.
   attr_accessor :reveal_cms_partials
 
+  # provide conditional get support for pages rendered from
+  # cms controller based on etag generated from page content
+  # caches can be busted by changing ENV["RAILS_CACHE_ID"] on deployment
+  attr_accessor :enable_conditional_get_support
+  
   # Configuration defaults
   def initialize
     @cms_title            = 'ComfortableMexicanSofa CMS Engine'
@@ -110,6 +115,7 @@ class ComfortableMexicanSofa::Configuration
     @allowed_partials     = nil
     @hostname_aliases     = nil
     @reveal_cms_partials  = false
+    @enable_conditional_get_support = false
   end
 
 end

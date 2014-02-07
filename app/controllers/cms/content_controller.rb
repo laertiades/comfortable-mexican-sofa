@@ -32,7 +32,12 @@ protected
   def render_html(status = 200)
     if @cms_layout = @cms_page.layout
       app_layout = (@cms_layout.app_layout.blank? || request.xhr?) ? false : @cms_layout.app_layout
-      render :inline => @cms_page.content, :layout => app_layout, :status => status, :content_type => 'text/html'
+      if !ComfortableMexicanSofa.config.enable_conditional_get_support || stale?(:etag => flash.to_hash, :last_modified => @cms_page.site.updated_at)
+#	response.headers["Cache-Control"] = "no-store"
+        render :inline => @cms_page.content, :layout => app_layout, :status => status, :content_type => 'text/html'
+      else
+	flash.clear
+      end
     else
       render :text => I18n.t('cms.content.layout_not_found'), :status => 404
     end
